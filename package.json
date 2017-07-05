@@ -18,6 +18,12 @@
   },
   "homepage": "https://github.com/xchoudhury/destiny-web-app#readme",
   "dependencies": {
-    "express": "^4.15.3"
+    "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.3",
+    "morgan": "^1.8.2",
+    "multer": "^1.3.0",
+    "path": "^0.12.7",
+    "pug": "^2.0.0-rc.2"
   }
 }

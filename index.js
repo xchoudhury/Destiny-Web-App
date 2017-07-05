@@ -6,7 +6,6 @@ const bodyParser = require('body-parser');
 
 const app = express()
 
-var routes = require('./routes');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var destiny = require('./routes/destiny');
@@ -22,11 +21,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-
-app.get('/home', function (req, res) {
-  res.send('Hello World! This is my first node app! ' + process.env.TEST)
-})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

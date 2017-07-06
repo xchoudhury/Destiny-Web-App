@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 
 
 router.get('/home', function (req, res) {
-  res.send('Hello World! This is my first node app! ' + process.env.TEST)
+  res.render('home')
 })
 
 module.exports = router;

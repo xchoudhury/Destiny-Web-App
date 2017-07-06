@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 
 const app = express()
 
-var index = require('./routes/index');
+var base = require('./routes/base');
 var users = require('./routes/users');
 var destiny = require('./routes/destiny');
 
@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-app.use('/', index);
+app.use('/', base);
 app.use('/users', users);
 app.use('/destiny', destiny);
 

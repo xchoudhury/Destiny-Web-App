@@ -6,7 +6,6 @@ var bodyParser = require('body-parser')
 
 var credentials = {};
 credentials.destinyKey = process.env.DESTINY_KEY;
-console.log(credentials.destinyKey)
 credentials.defaultUserName = 'xchoudhury';
 
 const HOST = 'http://www.bungie.net/Platform/Destiny/';

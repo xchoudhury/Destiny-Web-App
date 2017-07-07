@@ -3,10 +3,32 @@ html
     
     body
         include nav.pug
-        center
-            h1 Hello World!
-            h2 Bye world
+        center            
+            h1 Welcome!
+            h2 More features are yet to come!
             img(class="responsive-img" width=500 src="https://i.redd.it/arc4hlghokyy.jpg")
+            br
+            br
+            div(class="row")
+                div(class="col s12 m4")
+                    div(class="icon-block")
+                        h2(class="center light-blue-text"): i(class="material-icons") videogame_asset
+                        h5(class="center") Utilizes Bungie's #[a(href="https://www.destinythegame.com/") Destiny] API!
+
+                        p Based on the popular game, this website can show you what equipment each of your characters have!
+                div(class="col s12 m4")
+                    div(class="icon-block")
+                        h2(class="center light-blue-text"): i(class="material-icons") timelapse
+                        h5(class="center") Coming Soon!
+
+                        p Change your armor and weapons right from here!
+                div(class="col s12 m4")
+                    div(class="icon-block")
+                        h2(class="center light-blue-text"): i(class="material-icons") timelapse
+                        h5(class="center") Coming Soon
+
+                        p Track Xur and other timed events!
+
         include foot.pug
 
     include scripts.pug

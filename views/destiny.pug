@@ -1,13 +1,19 @@
-block content
-  h1= title
-  p Welcome <b> #{user}</b>!
+html
+    body
+        include head.pug
 
-  p Your first character's emblem is:
+        main
+            include nav.pug
+            h1= title
+            p Welcome <b> #{user}</b>!
 
-  img(src=emblem)
+            p Your first character's emblem is:
 
-  img(src=emblemBackground)
+            img(src=emblem)
 
-  br
-  #{summary}
-  
+            img(src=emblemBackground)
+
+            br
+            //#{summary}
+        include foot.pug  
+        include scripts.pug

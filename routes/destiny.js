@@ -4,24 +4,21 @@ var router = express.Router();
 var request = require('request');
 var bodyParser = require('body-parser')
 
-var credentials = {};
-credentials.destinyKey = process.env.DESTINY_KEY;
-credentials.defaultUserName = 'xchoudhury';
-
+var destinyKey = process.env.DESTINY_KEY;
+var defaultUserName = "xchoudhury"
 const HOST = 'http://www.bungie.net/Platform/Destiny/';
-var baseRequest = request.defaults({headers: {'X-API-Key': credentials.destinyKey}});
+var baseRequest = request.defaults({headers: {'X-API-Key': destinyKey}});
 
-function getMemID(res){
-     baseRequest(HOST + '2/Stats/GetMembershipIdByDisplayName/' + credentials.defaultUserName + '/',
+function getMemID(username, res){
+     baseRequest(HOST + '2/Stats/GetMembershipIdByDisplayName/' + username + '/',
 			  function (err, response, body) {
-
                 var memID =  JSON.parse(body)["Response"];
                 //res.render('destiny', {body:memID});
-                getCharSummary(memID, res);
+                getCharSummary(memID, username, res);
 		    });
 }
 
-function getCharSummary(memID, res){
+function getCharSummary(memID, username, res){
 
     baseRequest(HOST + '2/Account/' + memID + '/Summary/',
     function(err, response, body){
@@ -29,7 +26,7 @@ function getCharSummary(memID, res){
 
         options = {
          summary: JSON.stringify(summary),
-         user: "xchoudhury",
+         user: username,
          emblem: 'http://bungie.net' + summary.Response.data.characters[0].emblemPath,
          emblemBackground: 'http://bungie.net' + summary.Response.data.characters[0].backgroundPath
         };
@@ -39,8 +36,25 @@ function getCharSummary(memID, res){
 
 /* GET home page. */
 router.get('/', function(req, res) {
-		   getMemID(res);
+    var a = {"a" : "apple"};
+    var b = {"b" : "banana"};
+    var c = a + b;
+    console.log(c);
+    res.send("Under Maintance");
+		   //getMemID(res);
            //getCharSummary('4611686018429269605', res);
+
+});
+
+router.get('/:username', function(req, res) {
+    var username = req.params["username"];
+    getMemID(username, res);
+
+    // options = {
+    //     user : username
+    // };
+
+    // res.render('destiny', options);
 });
 
 module.exports = router;

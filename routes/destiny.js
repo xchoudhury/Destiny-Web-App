@@ -25,8 +25,9 @@ function getMemID(req, res){
 
                     return res.render('error', options);
                 }
+                
                 if(!err && response.statusCode < 400){
-                    var memID =  JSON.parse(body)["Response"];
+                    var memID =  body["Response"];
                     
                     //res.render('destiny', {body:memID});
                     return getCharSummary(req, memID, res);

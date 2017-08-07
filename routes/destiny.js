@@ -15,18 +15,20 @@ function getMemID(username, res){
                 var memID =  JSON.parse(body)["Response"];
                 
                 //res.render('destiny', {body:memID});
-                return getCharSummary(memID, res);
+                return getCharSummary(username, memID, res);
 		    });
 }
 
-function getCharSummary(memID, res){
+function getCharSummary(username, memID, res){
     baseRequest(HOST + '2/Account/' + memID + '/Summary/',
     function(err, response, body){
         var summary = JSON.parse(body);
         options = {
          summary: JSON.stringify(summary),
          emblem: 'http://bungie.net' + summary.Response.data.characters[0].emblemPath,
-         emblemBackground: 'http://bungie.net' + summary.Response.data.characters[0].backgroundPath
+         emblemBackground: 'http://bungie.net' +
+            summary.Response.data.characters[0].backgroundPath,
+         user: username
         };
 
         res.render('destiny', options);
@@ -43,10 +45,7 @@ router.get('/', function(req, res) {
 });
 
 router.get('/user', function(req, res) {
-    console.log(req.query);
-    res.json(req.query);
-    return;
-    var username = req.params["username"];
+    var username = req.query.username;
     getMemID(username, res);
     //var memID = getMemID(username);
     //console.log("memID", memID);

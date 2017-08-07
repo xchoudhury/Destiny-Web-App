@@ -13,13 +13,13 @@ html
                 form(class="col s5" action="/destiny/user" method="GET")
                     div(class="row")
                         div(class="input-field col s6")
-                            input(name="username" type="text" id="username" class="validate")
+                            input(name="username" type="text" id="username" class="validate" required)
                             lable(for="username") Username
                     div(class="row")
                         div(class="input-field col s12")
                             p Please select network
                             p
-                                input(name="network" type="radio" id="PSN" value="2")
+                                input(name="network" type="radio" id="PSN" value="2" required)
                                 label(for="PSN") PSN
                             p
                                 input(name="network" type="radio" id="XBOX" value="1")

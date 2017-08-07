@@ -1,0 +1,32 @@
+html
+    body
+        include head.pug
+
+        main
+            include nav.pug
+
+            center
+                h1 Character Select
+                h6 Please enter character details
+
+            div(class="row")
+                form(class="col s5" action="/destiny/user" method="GET")
+                    div(class="row")
+                        div(class="input-field col s6")
+                            input(type="text" id="username" class="validate")
+                            lable(for="username") Username
+                    div(class="row")
+                        div(class="input-field col s12")
+                            p Please select network
+                            p
+                                input(name="network" type="radio" id="PSN" value="PSN")
+                                label(for="PSN") PSN
+                            p
+                                input(name="network" type="radio" id="XBOX" value="XBOX")
+                                label(for="XBOX") XBOX
+                    div(class="row")
+                        button(class="btn waves-effect waves-light" type="submit") Submit
+
+
+        include foot.pug
+        include scripts.pug

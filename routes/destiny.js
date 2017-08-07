@@ -13,42 +13,47 @@ function getMemID(username, res){
      baseRequest(HOST + '2/Stats/GetMembershipIdByDisplayName/' + username + '/',
 			  function (err, response, body) {
                 var memID =  JSON.parse(body)["Response"];
+                
                 //res.render('destiny', {body:memID});
-                getCharSummary(memID, username, res);
+                return getCharSummary(memID, res);
 		    });
 }
 
-function getCharSummary(memID, username, res){
-
+function getCharSummary(memID, res){
     baseRequest(HOST + '2/Account/' + memID + '/Summary/',
     function(err, response, body){
         var summary = JSON.parse(body);
-
         options = {
          summary: JSON.stringify(summary),
-         user: username,
          emblem: 'http://bungie.net' + summary.Response.data.characters[0].emblemPath,
          emblemBackground: 'http://bungie.net' + summary.Response.data.characters[0].backgroundPath
         };
+
         res.render('destiny', options);
     });
 }
 
 /* GET home page. */
 router.get('/', function(req, res) {
-    var a = {"a" : "apple"};
-    var b = {"b" : "banana"};
-    var c = a + b;
-    console.log(c);
-    res.send("Under Maintance");
+    res.render('destiny_form');
+    // res.send("Under Maintance");
 		   //getMemID(res);
            //getCharSummary('4611686018429269605', res);
 
 });
 
-router.get('/:username', function(req, res) {
+router.get('/user', function(req, res) {
+    console.log(req.query);
+    res.json(req.query);
+    return;
     var username = req.params["username"];
     getMemID(username, res);
+    //var memID = getMemID(username);
+    //console.log("memID", memID);
+    //var options = getCharSummary(memID);
+    //var options = getMemID(username);
+    //options.user = username;
+    //res.render('destiny', options);
 
     // options = {
     //     user : username

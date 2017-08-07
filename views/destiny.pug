@@ -4,16 +4,16 @@ html
 
         main
             include nav.pug
+            center
+                p Welcome <b> #{user}</b>!
 
-            p Welcome <b> #{user}</b>!
+                p Your first character's emblem is:
 
-            p Your first character's emblem is:
+                img(src=emblem)
 
-            img(src=emblem)
+                img(src=emblemBackground)
 
-            img(src=emblemBackground)
-
-            br
-            //#{summary}
+                br
+                //#{summary}
         include foot.pug  
         include scripts.pug

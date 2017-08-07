@@ -10,7 +10,7 @@ const app = express()
 var base = require('./routes/base');
 var users = require('./routes/users');
 var destiny = require('./routes/destiny');
-
+var xur = require('./routes/xur');
 
 app.set('port', (process.env.PORT || 8000));
 app.use(express.static(__dirname + '/public'));
@@ -31,6 +31,7 @@ app.set('view engine', 'pug');
 app.use('/', base);
 app.use('/users', users);
 app.use('/destiny', destiny);
+app.use('/xur', xur);
 
 app.listen(app.get('port'), function () {
   console.log('Node app is running on port', app.get('port'))

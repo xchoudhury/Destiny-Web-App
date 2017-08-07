@@ -1,0 +1,15 @@
+html
+    body
+        include head.pug
+
+        main
+            include nav.pug
+
+            center
+                if !isXurHere
+                    h1 It looks like Xur is not here today. 
+                    h2 Please come back on the weekend to check again!
+                else
+                    h2 Xur is here!
+        include foot.pug  
+        include scripts.pug

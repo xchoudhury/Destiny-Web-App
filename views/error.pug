@@ -1,6 +1,15 @@
-extends layout
+html
+    body
+        include head.pug
 
-block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+        main
+            include nav.pug
+
+            center
+                h2 #{message}
+
+                h2 ErrorCode: #{errorCode}
+                h3 ErrorStatus: #{errorStatus}
+ 
+        include foot.pug  
+        include scripts.pug

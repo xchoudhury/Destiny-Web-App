@@ -9,18 +9,36 @@ var defaultUserName = "xchoudhury"
 const HOST = 'http://www.bungie.net/Platform/Destiny/';
 var baseRequest = request.defaults({headers: {'X-API-Key': destinyKey}});
 
-function getMemID(username, res){
-     baseRequest(HOST + '2/Stats/GetMembershipIdByDisplayName/' + username + '/',
+function getMemID(req, res){
+    var username = req.query.username;
+    var network = req.query.network;
+
+     baseRequest(HOST + '/' + network + '/Stats/GetMembershipIdByDisplayName/' + username + '/',
 			  function (err, response, body) {
-                var memID =  JSON.parse(body)["Response"];
-                
-                //res.render('destiny', {body:memID});
-                return getCharSummary(username, memID, res);
+                body = JSON.parse(body);
+                if(body.ErrorCode > 1){
+                    options = {
+                        errorCode: body.ErrorCode,
+                        errorStatus: body.ErrorStatus,
+                        message: body.Message
+                    };
+
+                    return res.render('error', options);
+                }
+                if(!err && response.statusCode < 400){
+                    var memID =  JSON.parse(body)["Response"];
+                    
+                    //res.render('destiny', {body:memID});
+                    return getCharSummary(req, memID, res);
+                }
 		    });
 }
 
-function getCharSummary(username, memID, res){
-    baseRequest(HOST + '2/Account/' + memID + '/Summary/',
+function getCharSummary(req, memID, res){
+    var username = req.query.username;
+    var network = req.query.network;
+
+    baseRequest(HOST + '/' + network + '/Account/' + memID + '/Summary/',
     function(err, response, body){
         var summary = JSON.parse(body);
         options = {
@@ -45,8 +63,7 @@ router.get('/', function(req, res) {
 });
 
 router.get('/user', function(req, res) {
-    var username = req.query.username;
-    getMemID(username, res);
+    getMemID(req, res);
     //var memID = getMemID(username);
     //console.log("memID", memID);
     //var options = getCharSummary(memID);

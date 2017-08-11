@@ -25,10 +25,33 @@ router.get('/', function(req, res) {
                     }
                     
                     if(!err && response.statusCode < 400){
+                        var items = [];
+
+                        // body.Response.data.saleItemCategories.forEach(function(saleItem){
+                        //     saleItem.saleItems.forEach(function(myItem){
+                        //         var hashID = myItem.item.itemHash;
+
+                        //         baseRequest(HOST + 'Manifest/6/' + hashID,
+                        //             function(err, response, body){
+                        //                 body = JSON.parse(body);
+                        //                 var item = {};
+                        //                 item.name = body.Response.data.inventoryItem.itemName;
+                        //                 item.type = body.Response.data.inventoryItem.itemTypeName;
+                        //                 item.tier = body.Response.data.inventoryItem.tierTypeName;
+                        //                 items.push(item);
+
+                                    
+                        //             console.log(items);
+   
+                        //             });
+                        //     });
+                        // });
+
                         options  = {
-                            isXurHere: true
+                            isXurHere: true,
+                            items: items
                         };
-                        res.render('xur', options);
+                    res.render('xur', options);     
                     }
                 });
 });
